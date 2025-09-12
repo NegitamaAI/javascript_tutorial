@@ -227,25 +227,49 @@ Learn JavaScript, TypeScript, and Next.js by building **AutoFlow** - a professio
 ### 📁 Repository Structure
 ```
 javascript_tutorial/
-├── apps/
-│   └── autoflow/                 # Next.js 14 App Router UI
-├── packages/
-│   ├── automation-engine/        # Core TypeScript automation engine
-│   └── shared-config/           # ESLint, Prettier, tsconfig bases
-├── examples/
-│   ├── chapter-01/              # Runnable JS examples + tests
-│   ├── chapter-02/              # Progressive complexity
-│   └── ...
-├── docs/                        # MDX book content (Docusaurus/Nextra)
-└── .github/workflows/           # CI/CD automation
+├── book/                           # 📖 Main learning content
+│   ├── part-1-javascript/
+│   │   ├── chapter-01-fundamentals/
+│   │   │   ├── README.md          # Chapter content
+│   │   │   ├── examples/          # Code examples
+│   │   │   ├── exercises/         # Practice problems
+│   │   │   ├── projects/          # Automation projects
+│   │   │   └── tests/            # Validation tests
+│   │   ├── chapter-02-variables/
+│   │   ├── chapter-03-functions/
+│   │   ├── chapter-04-control-flow/
+│   │   ├── chapter-05-arrays-objects/
+│   │   ├── chapter-06-modern-js/
+│   │   └── chapter-07-async/
+│   ├── part-2-typescript/
+│   │   ├── chapter-08-intro/
+│   │   ├── chapter-09-type-system/
+│   │   └── chapter-10-interfaces/
+│   └── part-3-nextjs/
+│       ├── chapter-11-fundamentals/
+│       ├── chapter-12-data-fetching/
+│       ├── chapter-13-advanced-patterns/
+│       ├── chapter-14-typescript-integration/
+│       └── chapter-15-production-platform/
+├── platform/                      # 🚀 AutoFlow platform
+│   ├── apps/
+│   │   └── autoflow/              # Next.js 14 App Router UI
+│   ├── packages/
+│   │   ├── automation-engine/     # Core TypeScript automation engine
+│   │   └── shared-config/         # ESLint, Prettier, tsconfig bases
+│   └── docs/                      # Platform documentation
+├── tools/                         # 🛠️ Development tools
+│   ├── scripts/                   # Build and automation scripts
+│   └── templates/                 # Chapter and project templates
+└── .github/workflows/             # CI/CD automation
 ```
 
 ### 🚀 Development Phases
 
 #### 🌱 Phase 1: Foundation (Chapters 1-3)
 **📅 Week 1-2: JavaScript Fundamentals**
-- ⚙️ Set up monorepo with pnpm workspaces
-- 📂 Create `examples/chapter-01/` through `examples/chapter-03/`
+- ⚙️ Set up book-centric repository structure
+- 📂 Create `book/part-1-javascript/chapter-01/` through `chapter-03/`
 - 🎯 Implement all "Critical Deep Dives" as runnable scripts
 - 🤖 Build basic automation projects (DOM manipulation, data extraction, event recording)
 - 📚 Add comprehensive tests and documentation
