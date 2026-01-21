@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: JavaScript Fundamentals Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .output {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .recording-indicator {
+            display: none;
+            background: #ff4444;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Chapter 1: JavaScript Fundamentals</h1>
+        
+        <div class="demo-section">
+            <h3>🤖 Automation Recorder Demo</h3>
+            <div class="recording-indicator" id="recordingIndicator">
+                🔴 RECORDING - Interact with elements below
+            </div>
+            
+            <div class="controls">
+                <button id="startRecording">Start Recording</button>
+                <button id="stopRecording" disabled>Stop Recording</button>
+                <button id="playback" disabled>Playback Actions</button>
+                <button id="clearActions">Clear Actions</button>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🎯 Interactive Elements</h3>
+            <p>Click buttons and fill inputs while recording to see automation in action!</p>
+            
+            <button id="demoButton1">Click Me!</button>
+            <button id="demoButton2">Or Me!</button>
+            <button id="demoButton3">Maybe Me?</button>
+            
+            <input type="text" id="nameInput" placeholder="Enter your name">
+            <input type="email" id="emailInput" placeholder="Enter your email">
+            <textarea id="messageInput" placeholder="Enter a message" rows="3"></textarea>
+            
+            <button id="submitForm">Submit Form</button>
+        </div>
+        
+        <div class="demo-section">
+            <h3>📊 Recorded Actions</h3>
+            <div id="actionsOutput" class="output">No actions recorded yet...</div>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🔧 Core Concepts Demo</h3>
+            <button id="memoryDemo">Memory Demo (Stack vs Heap)</button>
+            <button id="coercionDemo">Type Coercion Demo</button>
+            <button id="consoleDemo">Console Methods Demo</button>
+            
+            <div id="conceptOutput" class="output">Click buttons above to see concepts in action...</div>
+        </div>
+    </div>
+
+    <script src="automation-recorder.js"></script>
+    <script>
+        // Initialize the automation recorder
+        const recorder = new BasicAutomationRecorder();
+        let isRecording = false;
+        
+        // DOM elements
+        const startBtn = document.getElementById('startRecording');
+        const stopBtn = document.getElementById('stopRecording');
+        const playbackBtn = document.getElementById('playback');
+        const clearBtn = document.getElementById('clearActions');
+        const recordingIndicator = document.getElementById('recordingIndicator');
+        const actionsOutput = document.getElementById('actionsOutput');
+        const conceptOutput = document.getElementById('conceptOutput');
+        
+        // Recording controls
+        startBtn.addEventListener('click', () => {
+            recorder.startRecording();
+            isRecording = true;
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            recordingIndicator.style.display = 'block';
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            const actions = recorder.stopRecording();
+            isRecording = false;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            playbackBtn.disabled = actions.length === 0;
+            recordingIndicator.style.display = 'none';
+            
+            actionsOutput.textContent = actions.length > 0 
+                ? JSON.stringify(actions, null, 2)
+                : 'No actions recorded';
+        });
+        
+        playbackBtn.addEventListener('click', () => {
+            recorder.playback(1500); // 1.5 second delay between actions
+        });
+        
+        clearBtn.addEventListener('click', () => {
+            recorder.actions = [];
+            actionsOutput.textContent = 'Actions cleared';
+            playbackBtn.disabled = true;
+        });
+        
+        // Demo button interactions
+        document.getElementById('demoButton1').addEventListener('click', () => {
+            alert('Button 1 clicked! 🎉');
+        });
+        
+        document.getElementById('demoButton2').addEventListener('click', () => {
+            alert('Button 2 clicked! ⚡');
+        });
+        
+        document.getElementById('demoButton3').addEventListener('click', () => {
+            alert('Button 3 clicked! 🚀');
+        });
+        
+        document.getElementById('submitForm').addEventListener('click', () => {
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const message = document.getElementById('messageInput').value;
+            
+            alert(`Form submitted!\nName: ${name}\nEmail: ${email}\nMessage: ${message}`);
+        });
+        
+        // Core concepts demos
+        document.getElementById('memoryDemo').addEventListener('click', () => {
+            conceptOutput.textContent = `
+🧠 Memory Demo - Stack vs Heap
+
+// STACK (Primitives)
+let a = 5;
+let b = a;  // Copy value
+b = 10;
+console.log(a); // Still 5 ✅
+
+// HEAP (Objects)  
+let obj1 = { value: 5 };
+let obj2 = obj1;  // Copy reference
+obj2.value = 10;
+console.log(obj1.value); // Now 10! ⚠️
+
+Result: Primitives are copied by value, objects by reference!`;
+        });
+        
+        document.getElementById('coercionDemo').addEventListener('click', () => {
+            conceptOutput.textContent = `
+🔄 Type Coercion Demo
+
+console.log('5' + 3);     // "53" (string concat)
+console.log('5' - 3);     // 2 (numeric operation)
+console.log(true + 1);    // 2 (boolean to number)
+console.log('5' == 5);    // true (loose equality)
+console.log('5' === 5);   // false (strict equality)
+console.log([] + []);     // "" (empty string)
+console.log({} + []);     // "[object Object]"
+
+Remember: Use === for strict comparison!`;
+        });
+        
+        document.getElementById('consoleDemo').addEventListener('click', () => {
+            console.group('🐛 Console Methods Demo');
+            console.log('Basic log message');
+            console.info('ℹ️ Information message');
+            console.warn('⚠️ Warning message');
+            console.error('❌ Error message');
+            
+            console.table([
+                { name: 'Alice', age: 25, role: 'Developer' },
+                { name: 'Bob', age: 30, role: 'Designer' }
+            ]);
+            
+            console.time('Performance Test');
+            setTimeout(() => {
+                console.timeEnd('Performance Test');
+            }, 100);
+            
+            console.groupEnd();
+            
+            conceptOutput.textContent = `
+🖥️ Console Methods Demo
+
+Check the browser console (F12) to see:
+✅ console.log() - Basic logging
+ℹ️ console.info() - Information
+⚠️ console.warn() - Warnings  
+❌ console.error() - Errors
+📊 console.table() - Tabular data
+⏱️ console.time/timeEnd() - Performance
+📁 console.group() - Grouped messages
+
+Open DevTools to see the full demo!`;
+        });
+    </script>
+</body>
+</html>

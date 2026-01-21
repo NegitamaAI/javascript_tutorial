@@ -1,0 +1,14 @@
+{
+  "name": "chapter-01-javascript-fundamentals",
+  "version": "1.0.0",
+  "description": "Chapter 1: Your First Steps in JavaScript and Automation",
+  "main": "automation-recorder.js",
+  "scripts": {
+    "demo": "node exercises.js",
+    "test": "node test.js",
+    "serve": "python3 -m http.server 8000 || python -m SimpleHTTPServer 8000"
+  },
+  "keywords": ["javascript", "automation", "fundamentals", "dom", "browser"],
+  "author": "AutoFlow Tutorial",
+  "license": "MIT"
+}

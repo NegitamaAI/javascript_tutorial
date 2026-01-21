@@ -220,6 +220,28 @@ Learn JavaScript, TypeScript, and Next.js by building **AutoFlow** - a professio
 **🧠 Expert Knowledge**: Enterprise Architecture
 **🤖 Automation Project**: Complete AutoFlow SaaS platform with user management, billing, and enterprise features
 
+### 🟪 Part IV: Production-Grade Engineering
+
+#### 🧪 Chapter 16: Testing & Observability
+**🔧 Core Concepts**
+- 🧩 Test Pyramid: unit, integration, E2E
+- 🎭 Playwright Best Practices: fixtures, trace viewer, retries
+- 🧰 Debuggability: logs, traces, snapshots, console capture
+- 📈 Observability: metrics, structured logs, error reporting
+
+**🧠 Expert Knowledge**: Flake reduction, hermetic tests
+**🤖 Automation Project**: Full test suite for AutoFlow with CI artifacts
+
+#### 🚀 Chapter 17: Performance & Memory
+**🔧 Core Concepts**
+- ⏱️ Benchmarking: micro vs macro, lab vs field
+- ♻️ GC-Friendly Code: avoiding leaks, retaining paths
+- 🧱 Data Structures: arrays vs objects vs Maps/Sets
+- 🧮 Profiling: Node/Chrome DevTools CPU & heap snapshots
+
+**🧠 Expert Knowledge**: Generational GC, event-loop backpressure
+**🤖 Automation Project**: Optimize the automation engine for throughput
+
 ---
 
 ## 🛠️ Engineering Roadmap
@@ -251,6 +273,9 @@ javascript_tutorial/
 │       ├── chapter-13-advanced-patterns/
 │       ├── chapter-14-typescript-integration/
 │       └── chapter-15-production-platform/
+│   └── part-4-production-grade/
+│       ├── chapter-16-testing-observability/
+│       └── chapter-17-performance-memory/
 ├── platform/                      # 🚀 AutoFlow platform
 │   ├── apps/
 │   │   └── autoflow/              # Next.js 14 App Router UI
@@ -302,12 +327,45 @@ javascript_tutorial/
 - 💼 Build complete SaaS features (user management, billing, multi-tenancy)
 - 🚀 Deploy production-ready platform with monitoring and CI/CD
 
+#### 🧪 Phase 6: Production-Grade Engineering (Chapters 16-17)
+**📅 Week 11-12: Testing & Performance**
+- 🧩 Implement full test suite for AutoFlow with CI artifacts
+- 📈 Optimize the automation engine for throughput
+- 🧮 Profile and benchmark performance-critical components
+- 📊 Monitor and analyze production metrics
+
 ### ✨ Quality Standards
 - **🔒 TypeScript Strict Mode**: All code uses strict compiler options
 - **🧪 Testing**: Unit tests for all examples, Playwright E2E tests for automation
 - **📚 Documentation**: Every concept has runnable examples and explanations
 - **⚡ Performance**: Benchmarks and optimization patterns demonstrated
 - **🛡️ Security**: Safe automation practices, input validation, sandboxing
+- **🧭 Consistency**: Per-chapter deliverables and checklists enforced
+
+#### 📦 Chapter Deliverable Template (per chapter)
+- Concepts section with runnable code blocks
+- Deep Dive explaining internals (spec mental models where relevant)
+- At least 1–2 Mermaid diagrams
+- Pitfalls with “why it happens” explanations
+- Try it yourself exercises with expected outputs
+- Automation Project (class/module) with a demo script
+- Minimal tests in `tests/` and code in `examples/`, `projects/`, `exercises/`
+
+#### ✅ Per-Chapter Done Checklist
+- All code blocks run in Node or browser console
+- Diagrams render and support the mental model
+- At least one try-it block and one pitfalls block
+- Project compiles/runs and has a small test
+- Links between chapters and platform evolution updated
+
+#### ✍️ Authoring & Code Style (for all chapters)
+- Voice: confident, concise mentor. Explain the why and the how.
+- Every concept must include a minimal, runnable snippet (Node/browser-compatible).
+- Use Mermaid diagrams to reinforce mental models (at least one per deep dive).
+- Pitfalls must include root-cause explanations (operators/spec behavior).
+- Prefer modern JS (ES modules). Annotate Node/browser requirements when needed.
+- Keep each block focused on a single idea; avoid overly long examples.
+
 
 ### 🚀 Deployment Strategy
 - **💻 Examples**: Runnable in Node.js and browser environments
